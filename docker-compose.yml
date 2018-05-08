@@ -16,7 +16,7 @@ services:
       MYSQL_USER: ${MYSQL_USER:-user}
       MYSQL_PASSWORD: ${MYSQL_USER_PASSWORD:-password}
     ports:
-      - "${MYSQL_PORT:-8306}:3306"
+      - "${MYSQL_PORT:-3306}:3306"
 
   mongo-server26:
     container_name: mongodbserver26
@@ -28,7 +28,7 @@ services:
        - mongo-datadir:/data/db
     restart: always
     ports:
-      - "${MONGO_PORT:-8017}:27017"
+      - "${MONGO_PORT:-27017}:27017"
   
   elastic-server13:
     container_name: elastic-server13
@@ -48,8 +48,8 @@ services:
        - elastic-datadir:/data/db
     restart: always
     ports:
-      - "${MONGO_PORT:-8200}:9200"
-      - "${MONGO_PORT:-8300}:9300"
+      - "${MONGO_PORT:-9200}:9200"
+      - "${MONGO_PORT:-9300}:9300"
 
   redis-server:
     container_name: redis-server
@@ -58,7 +58,7 @@ services:
     command: ["redis-server", "--appendonly", "yes"]
     network_mode: ${NETWORK:-bridge}
     ports:
-        - "${REDIS_PORT:-8379}:6379"
+        - "${REDIS_PORT:-6379}:6379"
     restart: always
     volumes:
       - redis-datadir:/data
