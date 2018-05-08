@@ -30,15 +30,14 @@ services:
     ports:
       - "${MONGO_PORT:-8017}:27017"
 
-redis-server:
-  container_name: redis-server
-  image: redis
-  hostname: redis-server
-  command: ["redis-server", "--appendonly", "yes"]
-  network_mode: ${NETWORK:-bridge}
-  ports:
-      - "${REDIS_PORT:-8379}::6379"
-  restart: always
-  volumes:
-    - ${REDIS_DATADIR:-./datadir/redis-datadir}:/data
-
+  redis-server:
+    container_name: redis-server
+    image: redis
+    hostname: redis-server
+    command: ["redis-server", "--appendonly", "yes"]
+    network_mode: ${NETWORK:-bridge}
+    ports:
+        - "${REDIS_PORT:-8379}::6379"
+    restart: always
+    volumes:
+      - ${REDIS_DATADIR:-./datadir/redis-datadir}:/data
