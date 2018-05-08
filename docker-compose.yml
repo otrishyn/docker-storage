@@ -1,0 +1,44 @@
+
+version: '3.1'
+
+services:
+  mysql-server:
+    container_name: mysqlserver
+    hostname: mysql-server
+    image: mysql:${MYSQL_TAG:-5.5}
+    network_mode: ${NETWORK:-bridge}
+    volumes:
+       - ${MYSQL_DATADIR:-./datadir/mysql-datadir}:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-secret}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-homestead}
+      MYSQL_USER: ${MYSQL_USER:-user}
+      MYSQL_PASSWORD: ${MYSQL_USER_PASSWORD:-password}
+    ports:
+      - "${MYSQL_PORT:-8306}:3306"
+
+  mongo-server26:
+    container_name: mongodbserver26
+    hostname: mongo-server
+    build:
+      context: ./mongo/2.6
+    network_mode: ${NETWORK:-bridge}
+    volumes:
+       - ${MONGO_DATADIR:-./datadir/mongo-datadir}:/data/db
+    restart: always
+    ports:
+      - "${MONGO_PORT:-8017}:27017"
+
+redis-server:
+  container_name: redis-server
+  image: redis
+  hostname: redis-server
+  command: ["redis-server", "--appendonly", "yes"]
+  network_mode: ${NETWORK:-bridge}
+  ports:
+      - "${REDIS_PORT:-8379}::6379"
+  restart: always
+  volumes:
+    - ${REDIS_DATADIR:-./datadir/redis-datadir}:/data
+
