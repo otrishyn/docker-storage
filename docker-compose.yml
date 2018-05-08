@@ -48,7 +48,8 @@ services:
        - elastic-datadir:/data/db
     restart: always
     ports:
-      - "${MONGO_PORT:-8017}:9200"
+      - "${MONGO_PORT:-8200}:9200"
+      - "${MONGO_PORT:-8300}:9300"
 
   redis-server:
     container_name: redis-server
