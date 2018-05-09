@@ -16,7 +16,7 @@ services:
       MYSQL_USER: ${MYSQL_USER:-user}
       MYSQL_PASSWORD: ${MYSQL_USER_PASSWORD:-password}
     ports:
-      - "${MYSQL_PORT:-3306}:3306"
+      - "${MYSQL_PORT:-8989}:3306"
 
   mongo-server26:
     container_name: mongodbserver26
@@ -78,6 +78,20 @@ services:
     restart: always
     volumes:
       - redis-datadir:/data
+  
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    network_mode: ${NETWORK:-bridge}
+    environment:
+      PMA_HOST: mysql-server
+      MYSQL_USER: ${MYSQL_USER:-user}
+      MYSQL_PASSWORD: ${MYSQL_USER_PASSWORD:-password}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-secret}
+    ports:
+      - "${PHPMYADMIN_PORT:-4003}:80"
+    links:
+      - mysql-server
   
 volumes:
   mysql-datadir:
