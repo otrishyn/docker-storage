@@ -23,6 +23,9 @@ COPY config /usr/share/elasticsearch/config
 
 VOLUME /usr/share/elasticsearch/data
 
+COPY hq/v1.0.0.zip /
+RUN /usr/share/elasticsearch/bin/plugin --url file:///v1.0.0.zip --install royrusso/elasticsearch-HQ
+
 COPY docker-entrypoint.sh /
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
