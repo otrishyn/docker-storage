@@ -53,8 +53,8 @@ services:
        - elastic-datadir:/data/db
     restart: always
     ports:
-      - "${MONGO_PORT:-9200}:9200"
-      - "${MONGO_PORT:-9300}:9300"
+      - "${ELASTIC_REST_PORT:-9200}:9200"
+      - "${ELASTIC_NODE_PORT:-9300}:9300"
   
   elastichq:
     container_name: elastichq
