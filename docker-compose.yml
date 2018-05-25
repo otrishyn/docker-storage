@@ -36,16 +36,10 @@ services:
     build:
       context: ./elastic/1.3/
     environment:
-      - cluster.name=docker-cluster
-      - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - http.cors.enabled=true
-      - script.groovy.sandbox.enabled=false
-      - script.disable_dynamic=false
-      - node.master=true
       - http.cors.allow-origin=*
-      - http.cors.allow-methods=OPTIONS, HEAD, GET, POST, PUT, DELETE
-      - http.cors.allow-headers=X-Requested-With,X-Auth-Token,Content-Type, Content-Length
+      - http.cors.allow-methods=OPTIONS,HEAD,GET,POST,PUT,DELETE
+      - http.cors.allow-headers=X-Requested-With,X-Auth-Token,Content-Type,Content-Length
     ulimits:
       memlock:
         soft: -1

@@ -1,0 +1,6 @@
+cluster.name: docker-cluster
+bootstrap.memory_lock: true
+http.cors.enabled: true
+script.groovy.sandbox.enabled: false
+script.disable_dynamic: false
+node.master: true
