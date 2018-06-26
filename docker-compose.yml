@@ -26,6 +26,7 @@ services:
     network_mode: ${NETWORK:-bridge}
     volumes:
        - mongo-datadir:/data/db
+       - ${PROVISIONING_PATH:-${HOME}/Code}:/provisioning
     restart: always
     ports:
       - "${MONGO_PORT:-27017}:27017"
