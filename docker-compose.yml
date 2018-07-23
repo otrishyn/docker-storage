@@ -8,6 +8,7 @@ services:
     network_mode: ${NETWORK:-bridge}
     volumes:
        - mysql-datadir:/var/lib/mysql
+       - ${PROVISIONING_PATH:-~/Code}:/provisioning
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-secret}
