@@ -18,12 +18,12 @@ services:
       - ${MYSQL_PORT:-8989}:3306
 
   mysql57:
-    container_name: mysqlserver57
+    container_name: mysql57
     hostname: mysql-server57
     image: mysql:${MYSQL_TAG:-5.7}
     network_mode: ${NETWORK:-bridge}
     volumes:
-    - mysql-datadir:/var/lib/mysql
+    - mysql57-datadir:/var/lib/mysql
     - ${PROVISIONING_PATH:-~/Code}:/provisioning
     restart: always
     environment:
@@ -107,6 +107,7 @@ services:
   
 volumes:
   mysql-datadir:
+  mysql57-datadir:
   mongo-datadir:
   redis-datadir:
   elastic-datadir:
