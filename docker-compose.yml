@@ -14,7 +14,7 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-secret}
       MYSQL_DATABASE: ${MYSQL_DATABASE:-homestead}
       MYSQL_USER: ${MYSQL_USER:-user}
-      MYSQL_PASSWORD: ${MYSQL_USER_PASSWORD:-password}
+      MYSQL_PASSWORD: ${MYSQL_USER_PASSWORD:-secret}
     ports:
       - "${MYSQL_PORT:-8989}:3306"
 
