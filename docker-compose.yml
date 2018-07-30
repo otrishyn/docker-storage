@@ -12,7 +12,6 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-secret}
-      MYSQL_DATABASE: ${MYSQL_DATABASE:-homestead}
       MYSQL_USER: ${MYSQL_USER:-user}
       MYSQL_PASSWORD: ${MYSQL_USER_PASSWORD:-secret}
     ports:
