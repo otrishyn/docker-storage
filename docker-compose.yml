@@ -105,8 +105,8 @@ services:
     links:
       - mysql-server
 
-  mailhog-server:
-    container_name: mailhog-server
+  mailhog:
+    container_name: mailhog
     network_mode: ${NETWORK:-bridge}
     hostname: mailhog-server
     image: mailhog/mailhog
