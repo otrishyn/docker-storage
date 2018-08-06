@@ -107,6 +107,7 @@ services:
 
   mailhog-server:
     container_name: mailhog-server
+    network_mode: ${NETWORK:-bridge}
     hostname: mailhog-server
     image: mailhog/mailhog
     ports:
