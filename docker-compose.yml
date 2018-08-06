@@ -104,10 +104,18 @@ services:
       - ${PHPMYADMIN_PORT:-4003}:80
     links:
       - mysql-server
+
+  mailhog-server:
+    container_name: mailhog-server
+    hostname: mailhog-server
+    image: mailhog/mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
   
 volumes:
   mysql-datadir:
-  mysql57-datadir:
   mongo-datadir:
   redis-datadir:
   elastic-datadir:
+  mysql57-datadir:
