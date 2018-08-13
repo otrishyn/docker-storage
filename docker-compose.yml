@@ -10,6 +10,7 @@ services:
        - "mysql-datadir:/var/lib/mysql"
        - ${PROVISIONING_PATH:-~/Code}:/provisioning
     restart: always
+    working_dir: /provisioning
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-secret}
       MYSQL_USER: ${MYSQL_USER:-user}
@@ -39,6 +40,7 @@ services:
     build:
       context: ./mongo/2.6/
     network_mode: ${NETWORK:-bridge}
+    working_dir: /provisioning
     volumes:
        - mongo-datadir:/data/db
        - ${PROVISIONING_PATH:-~/Code}:/provisioning
