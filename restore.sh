@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export PROVISIONING_PATH='~/Code/provisioning'
+export PROVISIONING_PATH='/provisioning/provisioning'
 docker-compose exec mysql-server bash -c "cd ${PROVISIONING_PATH}; ./mysql-restore.sh futurum"
 docker-compose exec mysql-server bash -c "cd ${PROVISIONING_PATH}; ./mysql-restore.sh futurum_cc"
 
