@@ -115,6 +115,22 @@ services:
     ports:
       - "1025:1025"
       - "8025:8025"
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    hostname: rabbitmq
+    network_mode: ${NETWORK:-bridge}
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_ERLANG_COOKIE: SWQOKODSQALRPCLNMEQG
+      RABBITMQ_DEFAULT_USER: rabbitmq
+      RABBITMQ_DEFAULT_PASS: secret
+      RABBITMQ_DEFAULT_VHOST: /
+    ports:
+    - 15672:15672
+    - 5672:5672
+    labels:
+      NAME: rabbitmq
   
 volumes:
   mysql-datadir:
