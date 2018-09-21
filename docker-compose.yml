@@ -127,14 +127,25 @@ services:
       RABBITMQ_DEFAULT_PASS: secret
       RABBITMQ_DEFAULT_VHOST: /
     ports:
-    - 15672:15672
-    - 5672:5672
+      - 15672:15672
+      - 5672:5672
     labels:
       NAME: rabbitmq
-  
+
+  ch-server-1:
+    image: yandex/clickhouse-server
+    container_name: ch-server-1
+    hostname: ch-server-1
+    network_mode: ${NETWORK:-bridge}
+    volumes:
+      - ch-server-1-datadir:/var/lib/clickhouse
+    ports:
+      - ${CLICKHOUSE_PORT:-8123}:8123
+
 volumes:
   mysql-datadir:
   mongo-datadir:
   redis-datadir:
   elastic-datadir:
   mysql57-datadir:
+  ch-server-1-datadir:
