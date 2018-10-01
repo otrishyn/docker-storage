@@ -8,7 +8,7 @@ services:
     network_mode: ${NETWORK:-bridge}
     volumes:
        - "mysql-datadir:/var/lib/mysql"
-       - ${PROVISIONING_PATH:-~/Code}:/provisioning
+       - ${PROVISIONING_PATH:-~/Code/provisioning}:/provisioning
     restart: always
     working_dir: /provisioning
     environment:
@@ -25,7 +25,7 @@ services:
     network_mode: ${NETWORK:-bridge}
     volumes:
     - "mysql57-datadir:/var/lib/mysql"
-    - ${PROVISIONING_PATH:-~/Code}:/provisioning
+    - ${PROVISIONING_PATH:-~/Code/provisioning}:/provisioning
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-secret}
