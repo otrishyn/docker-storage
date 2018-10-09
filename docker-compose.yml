@@ -34,9 +34,9 @@ services:
     ports:
     - ${MYSQL57_PORT:-8980}:3306
 
-  mongo-server26:
-    container_name: mongodbserver26
-    hostname: mongo-server
+  mongo-server26-1:
+    container_name: mongodbserver26-1
+    hostname: mongo-server-1
     build:
       context: ./mongo/2.6/
     network_mode: ${NETWORK:-bridge}
@@ -46,7 +46,20 @@ services:
        - ${PROVISIONING_PATH:-~/Code}:/provisioning
     restart: always
     ports:
-      - ${MONGO_PORT:-27017}:27017
+      - ${MONGO26_PORT:-27018}:27017
+
+  mongo-server26:
+    container_name: mongodbserver26
+    hostname: mongo-server
+    image: mongo:latest
+    network_mode: ${NETWORK:-bridge}
+    working_dir: /provisioning
+    volumes:
+    - mongo34-datadir:/data/db
+    - ${PROVISIONING_PATH:-~/Code}:/provisioning
+    restart: always
+    ports:
+    - ${MONGO34_PORT:-27017}:27017
   
   elastic-server13:
     container_name: elastic-server13
@@ -149,3 +162,4 @@ volumes:
   elastic-datadir:
   mysql57-datadir:
   ch-server-1-datadir:
+  mongo34-datadir:
