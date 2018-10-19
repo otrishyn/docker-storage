@@ -34,33 +34,47 @@ services:
     ports:
     - ${MYSQL57_PORT:-8980}:3306
 
-  mongo-server26-1:
-    container_name: mongodbserver26-1
-    hostname: mongo-server-1
+  mongo-server24:
+    container_name: mongo-server24
+    hostname: mongo-server24
+    build:
+      context: ./mongo/2.4/
+    network_mode: ${NETWORK:-bridge}
+    working_dir: /provisioning
+    volumes:
+    - mongo-datadir24:/data/db
+    - ${PROVISIONING_PATH:-~/Code}:/provisioning
+    restart: always
+    ports:
+    - ${MONGO26_PORT:-27020}:27017
+
+  mongo-server26:
+    container_name: mongo-server26
+    hostname: mongo-server26
     build:
       context: ./mongo/2.6/
     network_mode: ${NETWORK:-bridge}
     working_dir: /provisioning
     volumes:
-       - mongo-datadir:/data/db
+       - mongo-datadir26:/data/db
        - ${PROVISIONING_PATH:-~/Code}:/provisioning
     restart: always
     ports:
       - ${MONGO26_PORT:-27018}:27017
 
-  mongo-server26:
-    container_name: mongodbserver26
-    hostname: mongo-server
+  mongo-server-latest:
+    container_name: mongo-server-latest
+    hostname: mongo-server-latest
     image: mongo:latest
     network_mode: ${NETWORK:-bridge}
     working_dir: /provisioning
     volumes:
-    - mongo34-datadir:/data/db
+    - mongo-datadir-latest:/data/db
     - ${PROVISIONING_PATH:-~/Code}:/provisioning
     restart: always
     ports:
-    - ${MONGO34_PORT:-27017}:27017
-  
+    - ${MONGO34_PORT:-27019}:27017
+
   elastic-server13:
     container_name: elastic-server13
     hostname: elastic-server13
@@ -157,9 +171,10 @@ services:
 
 volumes:
   mysql-datadir:
-  mongo-datadir:
   redis-datadir:
   elastic-datadir:
   mysql57-datadir:
   ch-server-1-datadir:
-  mongo34-datadir:
+  mongo-datadir-latest:
+  mongo-datadir24:
+  mongo-datadir26:
