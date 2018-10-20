@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
 
-export DATE=${1:-`date +%Y-%m-%d`}
-
-# Restore
-docker-compose exec -e DATE mongo-server26 bash -c "./mongo-restore.sh futurum"
-docker-compose exec -e DATE mongo-server26 bash -c "./mongo-restore.sh futurum_cc"
+docker-compose exec -e ${1:-`date +%Y-%m-%d`} ${MONGOSERVER:-mongo-server24} bash -c "./mongo-restore.sh futurum"
+docker-compose exec -e ${1:-`date +%Y-%m-%d`} ${MONGOSERVER:-mongo-server24} bash -c "./mongo-restore.sh futurum_cc"

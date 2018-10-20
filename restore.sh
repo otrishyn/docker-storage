@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 
-export DATE=${1:-`date +%Y-%m-%d`}
-./restore-mysql.sh $DATE
-./restore-mongo.sh $DATE
+./restore-mysql.sh ${1:-`date +%Y-%m-%d`}
+./restore-mongo.sh ${1:-`date +%Y-%m-%d`}
